@@ -1,7 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Video = (props) => {
     const [rate, setRate] = useState(0); //hook
+    const [isValid, setIsValid] = useState(true);
+
+    //componentDidMount
+    useEffect(() => {
+        console.log('Soy el Component Video')
+    }, [])
+
+    //componentDidUpdate + componentDidMount
+    useEffect(() => {
+        console.log('all the time in Video')
+    })
+
+    //componentDidUpdate when rate change
+    useEffect(() => {
+        console.log('Solamente se ejecuta cuando se actualiza el estado RATE')
+    }, [rate])
+
+    //componentDidUpdate when isValid change
+    useEffect(() => {
+        console.log('Solamente se ejecuta cuando se actualiza el estado isValid')
+    }, [isValid])
+
+    useEffect(() => {
+        return () => console.log('Video is unmounted')
+    })
 
     const rateHandler = () => {
         setRate(rate+1)
